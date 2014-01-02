@@ -4,20 +4,21 @@
     <script src="http://code.angularjs.org/angular-1.0.0rc3.min.js"></script>
     <script src="todo.js"></script>
     <link rel="stylesheet" href="todo.css">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/3.0.3/css/bootstrap-combined.min.css" rel="stylesheet" media="screen">
   </head>
   <body>
     <div ng-controller="TodoController">
-      <h2>Total todos: {{getTotalTodos()}}</h2>
+      <h2 id="forms-example">Total todos: {{getTotalTodos()}}</h2>
       <ul>
         <li ng-repeat="todo in todos | orderBy:'-importance'">
           <input type="checkbox" ng-model="todo.done">
           <span class="done-{{todo.done}}">{{todo.text}} - {{todo.importance}}</span>
         </li>
       </ul>
-      <form class="form-horizontal">
+      <form class="form-inline">
         <input type="text" ng-model="formTodoText">
-        <input type="number" ng-model="formTodoImportance">
-        <button class="btn" ng-click="addTodo()">Add</button>
+        <input type="number" id="exampleInputNumber1" ng-model="formTodoImportance">
+        <button ng-click="addTodo()">Add</button>
       </form>
       <button ng-click="clearCompleted()">Clear Completed</button>
     </div>
