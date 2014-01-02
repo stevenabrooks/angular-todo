@@ -9,13 +9,14 @@
     <div ng-controller="TodoController">
       <h2>Total todos: {{getTotalTodos()}}</h2>
       <ul>
-        <li ng-repeat="todo in todos">
+        <li ng-repeat="todo in todos | orderBy:'-importance'">
           <input type="checkbox" ng-model="todo.done">
-          <span class="done-{{todo.done}}">{{todo.text}}</span>
+          <span class="done-{{todo.done}}">{{todo.text}} - {{todo.importance}}</span>
         </li>
       </ul>
       <form class="form-horizontal">
-        <input type="text" ng-model="formTodoText" ng-model-instant>
+        <input type="text" ng-model="formTodoText">
+        <input type="number" ng-model="formTodoImportance">
         <button class="btn" ng-click="addTodo()">Add</button>
       </form>
       <button ng-click="clearCompleted()">Clear Completed</button>

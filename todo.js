@@ -1,8 +1,8 @@
-function TodoController($scope) {
+function TodoController($scope, $filter) {
 
   $scope.todos = [
-    {text:'Learn AngularJS', done:false},
-    {text:'Build an app', done:false}
+    {text:'Learn AngularJS', importance: 5, done:false},
+    {text:'Build an app', importance: 10, done:false}
   ];
 
   $scope.getTotalTodos = function () {
@@ -10,14 +10,16 @@ function TodoController($scope) {
   };
 
   $scope.clearCompleted = function () {
-    $scope.todos = _.filter($scope.todos, function(todo){
-      return !todo.done;
-    });
-  };
+    $scope.todos = $filter("filter")($scope.todos, function(todo){
+      console.log(todo)
+    return !todo.done;
+  });
+};
 
   $scope.addTodo = function () {
-    $scope.todos.push({text:$scope.formTodoText, done:false});
+    $scope.todos.push({text:$scope.formTodoText, importance:$scope.formTodoImportance, done:false});
     $scope.formTodoText = '';
+    $scope.formTodoImportance = '';
   };
 
 }
