@@ -10,10 +10,7 @@ function TodoController($scope, $filter) {
   };
 
   $scope.clearCompleted = function () {
-    $scope.todos = $filter("filter")($scope.todos, function(todo){
-      console.log(todo)
-    return !todo.done;
-  });
+    $scope.todos = $filter("filter")($scope.todos, {done:false});
 };
 
   $scope.addTodo = function () {
